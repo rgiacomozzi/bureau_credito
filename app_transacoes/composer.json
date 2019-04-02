@@ -1,6 +1,7 @@
 {
   "require": {
     "guzzlehttp/guzzle": "~6.0",
-    "slim/slim": "^3.12"
+    "slim/slim": "^3.12",
+    "elasticsearch/elasticsearch": "^6.1"
   }
 }

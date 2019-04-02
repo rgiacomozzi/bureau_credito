@@ -57,10 +57,14 @@ $app->get('/dados_cadastrais/{cpf}', function (Request $request, Response $respo
 
 	$cpf = $args['cpf'];
 
-	$response_cadastro = $api->request('GET', 'http://localhost/lab/desafio_serasac/bureau_credito/app_cadastro/api/pessoas/'.$cpf);
-	$html = $response_cadastro->getBody();
+	$api_request = $api->request('GET', 'http://localhost/lab/desafio_serasac/bureau_credito/app_cadastro/api/pessoas/'.$cpf);
+	$result = $api_request->getBody();
 
-	return $response->getBody()->write($html);
+	//ToDo
+
+	//response
+	$response->withHeader('Content-type', 'application/json');
+	return $response->write($result);
 });
 
 /**
@@ -74,9 +78,12 @@ $app->get('/lista_fontes_renda/{cpf}', function (Request $request, Response $res
 	$cpf = $args['cpf'];
 
 	//Ativos
-	$response_ativos = $api->request('GET', 'http://localhost/lab/desafio_serasac/bureau_credito/app_ativos/api/fontes_renda/lista/'.$cpf);
-	$html = $response_ativos->getBody();
+	$api_request = $api->request('GET', 'http://localhost/lab/desafio_serasac/bureau_credito/app_ativos/api/fontes_renda/lista/'.$cpf);
+	$html = $api_request->getBody();
 
+	//ToDo
+
+	//response
 	return $response->getBody()->write($html);
 });
 
@@ -91,9 +98,12 @@ $app->get('/lista_bens_materiais/{cpf}', function (Request $request, Response $r
 	$cpf = $args['cpf'];
 
 	//Ativos
-	$response_ativos = $api->request('GET', 'http://localhost/lab/desafio_serasac/bureau_credito/app_ativos/api/bens_materiais/lista/'.$cpf);
-	$html = $response_ativos->getBody();
+	$api_request = $api->request('GET', 'http://localhost/lab/desafio_serasac/bureau_credito/app_ativos/api/bens_materiais/lista/'.$cpf);
+	$html = $api_request->getBody();
 
+	//ToDo
+
+	//response
 	return $response->getBody()->write($html);
 });
 
@@ -108,9 +118,12 @@ $app->get('/ultima_consulta_cpf/{cpf}', function (Request $request, Response $re
 	$cpf = $args['cpf'];
 
 	//Transações
-	$response_transacoes = $api->request('GET', 'http://localhost/lab/desafio_serasac/bureau_credito/app_transacoes/api/consultas_cpf/ultima/'.$cpf);
-	$html = $response_transacoes->getBody();
+	$api_request = $api->request('GET', 'http://localhost/lab/desafio_serasac/bureau_credito/app_transacoes/api/consultas_cpf/ultima/'.$cpf);
+	$html = $api_request->getBody();
 
+	//ToDo
+
+	//response
 	return $response->getBody()->write($html);
 });
 
@@ -125,9 +138,12 @@ $app->get('/movimentacoes_financeiras_recentes/{cpf}', function (Request $reques
 	$cpf = $args['cpf'];
 
 	//Transações
-	$response_transacoes = $api->request('GET', 'http://localhost/lab/desafio_serasac/bureau_credito/app_transacoes/api/movimentacoes_financeiras/lista/'.$cpf);
-	$html = $response_transacoes->getBody();
+	$api_request = $api->request('GET', 'http://localhost/lab/desafio_serasac/bureau_credito/app_transacoes/api/movimentacoes_financeiras/lista/'.$cpf);
+	$html = $api_request->getBody();
+	
+	//ToDo
 
+	//response
 	return $response->getBody()->write($html);
 });
 
