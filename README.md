@@ -1,14 +1,14 @@
 # bureau_credito
 
-*Aplicação de estudos e testes*
+*Esta é uma aplicação de estudo e testes*
 
-Sabendo do cenário e problema a ser resolvido (desafio), elaborei uma proposta de solução.
+(...) Sabendo do cenário e problema a ser resolvido (desafio), elaborei uma proposta de solução.
 
 Em uma visão geral, têm-se uma aplicação(ções) para: a) Consumir bases/recursos externos; b) Processar e tratar os dados; e c) Disponibilizar novos recursos.
 
 A arquitetura proposta, orientada a micro-serviços, foi baseado em recursos de negócio. Ela permite separar, responsabilizar e dar automonia para os assuntos. O 'container' entra em cena como uma forma de concentrar e orquestrar os recursos utilizados.
 
-####Aplicações e serviços
+#### Aplicações e serviços
 
 - Cadastro
   - dados pessoais
@@ -21,7 +21,7 @@ A arquitetura proposta, orientada a micro-serviços, foi baseado em recursos de 
   - movimentações financeiras
 - Container
 
-##Cadastro
+## Cadastro
 
 - Consumo de uma base MySQL, que fornece mecanismos de restrição/permissão de acesso aos dados
   - cpf, nome, endereço, cidade, estado, data nascimento
@@ -30,7 +30,7 @@ A arquitetura proposta, orientada a micro-serviços, foi baseado em recursos de 
 - Tecnologias
   - PHP/Mysql
 
-##Ativos
+## Ativos
 
 - Consumo via API de uma base ElasticSearch
   - bens_materiais: cpf, descricao, valor, tipo[imovei|automovel|...]
@@ -41,7 +41,7 @@ A arquitetura proposta, orientada a micro-serviços, foi baseado em recursos de 
 - Tecnologias
   - Slim PHP Framework
 
-##Transações
+## Transações
 
 - Consumo via API de uma base ElasticSearch, oferendo perfomance das consultas/pesquisas com grande volumes de dados
   - consultas: cpf, instituicao, data, quem_consultou
@@ -54,7 +54,7 @@ A arquitetura proposta, orientada a micro-serviços, foi baseado em recursos de 
 - Tecnologias
   - Slim PHP Framework
 
-##Container
+## Container
 
 A aplicação 'container' será usada para conectar os microservices, fornecendo os recursos principais e também novos recursos p/ outras aplicações ou terceiros.
 
@@ -63,33 +63,35 @@ A aplicação 'container' será usada para conectar os microservices, fornecendo
   - GuzzleHttp (HTTP client)
   - API Rest
 
-=====
 
 # Entendendo os códigos criados
 
 No arquivo "bureau_credito/app_container/src/public/index.php", preparei exemplos de consumo das APIs criadas.
 
 APIs consumidas pelo container
+```
 - {$base_uri}/app_cadastro/api/pessoas/{cpf}
 - {$base_uri}/app_ativos/api/fontes_renda/lista/{cpf}
 - {$base_uri}/app_ativos/api/bens_materiais/lista/{cpf}
 - {$base_uri}/app_transacoes/api/consultas_cpf/ultima/{cpf}
 - {$base_uri}/app_transacoes/api/movimentacoes_financeiras/lista/{cpf}
-
+```
 APIs expostas pelo container
+```
 - {$base_uri}/app_container/src/public/dados_cadastrais/{cpf}
 - {$base_uri}/app_container/src/public/lista_fontes_renda/{cpf}
 - {$base_uri}/app_container/src/public/lista_bens_materiais/{cpf}
 - {$base_uri}/app_container/src/public/ultima_consulta_cpf/{cpf}
 - {$base_uri}/app_container/src/public/movimentacoes_financeiras_recentes/{cpf}
-
+```
 Não implementado / problemas
 - O consumo das API não foram implementados com métodos de autenticação/autorização
 - No app_cadastro, não consegui usar namespace p/ chamar o PessoaController();, então usei o require
 
+---
 
-=====
-
+Script p/ a base de dados MySQL
+```
 CREATE DATABASE bureau_credito;
 
 CREATE TABLE pessoa (
@@ -102,5 +104,4 @@ CREATE TABLE pessoa (
   PRIMARY KEY (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ALTER TABLE bureau_credito.pessoa ADD CONSTRAINT pessoa_UN UNIQUE KEY (cpf);
-
-
+```
