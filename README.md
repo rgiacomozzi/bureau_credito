@@ -8,6 +8,8 @@ Em uma visão geral, têm-se uma aplicação(ções) para: a) Consumir bases/rec
 
 A arquitetura proposta, orientada a micro-serviços, foi baseado em recursos de negócio. Ela permite separar, responsabilizar e dar automonia para os assuntos. O 'container' entra em cena como uma forma de concentrar e orquestrar os recursos utilizados.
 
+![Alt text](diagrama_arq.png?raw=true "Arquitetura")
+
 #### Aplicações e serviços
 
 - Cadastro
