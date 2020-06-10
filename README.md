@@ -2,8 +2,6 @@
 
 *Esta é uma aplicação de estudo e testes*
 
-(...) Sabendo do cenário e problema a ser resolvido (desafio), elaborei uma proposta de solução.
-
 Em uma visão geral, têm-se uma aplicação(ções) para: a) Consumir bases/recursos externos; b) Processar e tratar os dados; e c) Disponibilizar novos recursos.
 
 A arquitetura proposta, orientada a micro-serviços, foi baseado em recursos de negócio. Ela permite separar, responsabilizar e dar automonia para os assuntos. O 'container' entra em cena como uma forma de concentrar e orquestrar os recursos utilizados.
